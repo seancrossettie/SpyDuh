@@ -14,7 +14,16 @@ namespace SpyDuh.DataAccess
            {
               Id =  Guid.NewGuid(),
               Name = "Inspector Gadget",
-              DoubleAgent = true
+              DoubleAgent = true,
+              SpySkills = new List<Skill>
+              {
+                  new Skill
+                  {
+                      SkillLevel = 1,
+                      SkillName = "Stealth",
+                      SkillType = SkillType.Stealth
+                  }
+              }
            },
            new Spy
            {
