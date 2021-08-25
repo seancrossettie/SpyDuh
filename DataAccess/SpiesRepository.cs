@@ -135,9 +135,16 @@ namespace SpyDuh.DataAccess
             _spies.Add(newSpy);
         }
 
-        internal Spy GetById(Guid spyId)
+        public IEnumerable<Spy> GetById(Guid spyId)
         {
-            return _spies.FirstOrDefault(spy => spy.Id == spyId);
+            var result = _spies.Where(spy => spy.Id == spyId);
+            return result;
+        }
+
+        public IEnumerable<Spy> GetFriends(bool friendStatus)
+        { 
+            var result = _spies.Where(spy => spy.DoubleAgent == friendStatus);
+            return result;
         }
     }
 }
