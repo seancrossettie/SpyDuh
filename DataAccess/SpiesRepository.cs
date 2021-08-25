@@ -19,7 +19,7 @@ namespace SpyDuh.DataAccess
               {
                   new Skill
                   {
-                      //SkillId = Guid.NewGuid(),
+                      SkillId = Guid.NewGuid(),
                       SkillLevel = 1,
                       SkillName = "Stealth",
                       SkillType = SkillType.Stealth
@@ -35,7 +35,7 @@ namespace SpyDuh.DataAccess
                   {
                       new Skill
                       {
-                          //SkillId = Guid.NewGuid(),
+                          SkillId = Guid.NewGuid(),
                           SkillLevel = 5,
                           SkillName = "Finesse",
                           SkillType = SkillType.SoftSkills
@@ -51,7 +51,7 @@ namespace SpyDuh.DataAccess
                   {
                       new Skill
                       {
-                          //SkillId = Guid.NewGuid(),
+                          SkillId = Guid.NewGuid(),
                           SkillLevel = 1000,
                           SkillName = "Underground Railroad Boss B",
                           SkillType = SkillType.Recon
@@ -67,7 +67,7 @@ namespace SpyDuh.DataAccess
                   {
                       new Skill
                       {
-                          //SkillId = Guid.NewGuid(),
+                          SkillId = Guid.NewGuid(),
                           SkillLevel = 25,
                           SkillName = "Karate, the Dane Cook of martial arts",
                           SkillType = SkillType.Combat
@@ -83,7 +83,7 @@ namespace SpyDuh.DataAccess
                   {
                       new Skill
                       {
-                          //SkillId = Guid.NewGuid(),
+                          SkillId = Guid.NewGuid(),
                           SkillLevel = 1,
                           SkillName = "Diplomacy",
                           SkillType = SkillType.Negotiation
@@ -99,7 +99,7 @@ namespace SpyDuh.DataAccess
                   {
                       new Skill
                       {
-                          //SkillId = Guid.NewGuid(),
+                          SkillId = Guid.NewGuid(),
                           SkillLevel = 15,
                           SkillName = "Ballin Out",
                           SkillType = SkillType.Finance
@@ -115,7 +115,7 @@ namespace SpyDuh.DataAccess
                   {
                       new Skill
                       {
-                          //SkillId = Guid.NewGuid(),
+                          SkillId = Guid.NewGuid(),
                           SkillLevel = 100,
                           SkillName = "Babyface",
                           SkillType = SkillType.Stealth

@@ -2,20 +2,68 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SpyDuh.DataAccess
 {
     public class SkillRepository
     {
-        static List<Skill> _skills = new List<Skill>
+        private static List<Skill> _skills = new List<Skill>
         {
             new Skill
             {
-                //SkillId = Guid.NewGuid(),
+                SkillId = Guid.NewGuid(),
                 SkillLevel = 42,
                 SkillName = "Slinking About",
                 SkillType = SkillType.Stealth
+            },
+            new Skill
+            {
+                SkillId = Guid.NewGuid(),
+                SkillLevel = 1,
+                SkillName = "Stealth",
+                SkillType = SkillType.Stealth
+            },
+            new Skill
+            {
+                SkillId = Guid.NewGuid(),
+                SkillLevel = 5,
+                SkillName = "Finesse",
+                SkillType = SkillType.SoftSkills
+            },
+            new Skill
+            {
+                SkillId = Guid.NewGuid(),
+                SkillLevel = 25,
+                SkillName = "Nunchuku",
+                SkillType = SkillType.Combat
+            },
+            new Skill
+            {
+                SkillId = Guid.NewGuid(),
+                SkillLevel = 10,
+                SkillName = "Gamblin",
+                SkillType = SkillType.Finance
+            },
+            new Skill
+            {
+                SkillId = Guid.NewGuid(),
+                SkillLevel = 44,
+                SkillName = "Silver Tongue",
+                SkillType = SkillType.Negotiation
+            },
+            new Skill
+            {
+                SkillId = Guid.NewGuid(),
+                SkillLevel = 24,
+                SkillName = "Hustlin New Blood",
+                SkillType = SkillType.Recruiting
+            },
+            new Skill
+            {
+                SkillId = Guid.NewGuid(),
+                SkillLevel = 114,
+                SkillName = "Sippin Tea",
+                SkillType = SkillType.Recon
             }
         };
 
@@ -24,24 +72,20 @@ namespace SpyDuh.DataAccess
             throw new NotImplementedException();
         }
 
-        internal List<Skill> GetAll()
+        internal IEnumerable<Skill> GetAll()
         {
-            throw new NotImplementedException();
+            return _skills;
         }
 
         internal void Add(Skill newSkill)
         {
-            throw new NotImplementedException();
+            newSkill.SkillId = Guid.NewGuid();
+            _skills.Add(newSkill);
         }
 
-        //internal Skill GetBySkillId(Guid skillId)
-        //{
-        //    return _skills.FirstOrDefault(skill => skill.SkillId == skillId);
-        //}
-
-        internal IEnumerable<Skill> GetSkillByType(object s)
+        internal Skill GetBySkillId(Guid skillId)
         {
-            throw new NotImplementedException();
+            return _skills.FirstOrDefault(skill => skill.SkillId == skillId);
         }
 
         public IEnumerable<Skill> GetSkillBySkillType(SkillType skillType)
@@ -50,9 +94,9 @@ namespace SpyDuh.DataAccess
             return skillsByType;
         }
 
-        //public void Remove(Guid skillId)
-        //{
-        //    var removeSkill = GetBySkillId(skillId);
-        //}
+        public void Remove(Guid skillId)
+        {
+            var removeSkill = GetBySkillId(skillId);
+        }
     }
 }

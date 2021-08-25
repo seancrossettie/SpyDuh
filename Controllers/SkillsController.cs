@@ -26,17 +26,26 @@ namespace SpyDuh.Controllers
             return (List<Skill>)_repo.GetAll();
         }
 
-        [HttpGet("skills/{skill}")] // how should this method be exposed & executed
-        // all additive
-        public IEnumerable<Skill> GetSkillBySkillType(SkillType skillType) // IEnum is just to loop over; restrictive permissions
+        [HttpGet("{skillType}")]
+        public IEnumerable<Skill> GetSkillBySkillType(SkillType skillType)
         {
             return _repo.GetSkillBySkillType(skillType);
         }
 
         [HttpPost]
-        public void AddASkill(Skill newSkill)
+        public IActionResult AddNewSkill(Skill newSkill)
         {
             _repo.Add(newSkill);
+
+            return Created($"/api/skills/{newSkill.SkillId}", newSkill);
+        }
+
+        [HttpDelete("{skillId}")]
+        public IActionResult RemoveSkill(Guid skillId)
+        {
+            _repo.Remove(skillId);
+
+            return Ok();
         }
     }
 }
