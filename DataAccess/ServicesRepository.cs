@@ -2,57 +2,73 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static SpyDuh.Models.SpyService;
+using SpyDuh.Models;
+
 
 namespace SpyDuh.DataAccess
 {
     public class ServicesRepository
     { 
-        static List<ListOfServices> _services = new List<ListOfServices>
+        static List<Service> _services = new List<Service>
+        {
+            new Service
             {
-                new Hat
-                {
-                    Id = Guid.NewGuid(),
-                    Color = "Blue",
-                    Designer = "Charlie",
-                    Style = HatStyle.OpenBack
-                },
-                new Hat
-                {
-                    Id = Guid.NewGuid(),
-                    Color = "Black",
-                    Designer = "Nathan",
-                    Style = HatStyle.WideBrim
-                },
-                new Hat
-                {
-                    Id = Guid.NewGuid(),
-                    Color = "Magenta",
-                    Designer = "Charlie",
-                    Style = HatStyle.Normal
-                }
-            };
+                ServiceId = Guid.NewGuid(),
+                ServicePrice = 4000,
+                ServiceName = "Scope out a facility",
+                Type = ServiceType.Recon
+            },
+            
+            new Service
+            {
+                ServiceId = Guid.NewGuid(),
+                ServicePrice = 230000,
+                ServiceName = "Make someone disappear",
+                Type = ServiceType.Combat
+            },
 
-        internal Hat GetById(Guid hatId)
+            new Service
+            {
+                ServiceId = Guid.NewGuid(),
+                ServicePrice = 200000,
+                ServiceName = "Fight another agent",
+                Type = ServiceType.Combat
+            },
+
+            new Service
+            {
+                ServiceId = Guid.NewGuid(),
+                ServicePrice = 20000,
+                ServiceName = "Flip an agent",
+                Type = ServiceType.Recruiting
+            }
+        };
+
+        internal List<Service> GetAll()
         {
-            return _hats.FirstOrDefault(hat => hat.Id == hatId);
+            return _services;
         }
 
-        internal List<Hat> GetAll()
+        internal Service GetServiceById(Guid serviceId)
         {
-            return _hats;
+            return _services.FirstOrDefault(service => service.ServiceId == serviceId);
         }
 
-        internal IEnumerable<Hat> GetByStyle(HatStyle style)
+        public IEnumerable<Service> GetServiceByType(ServiceType type)
         {
-            return _hats.Where(hat => hat.Style == style);
+            return _services.Where(serviceType => serviceType.Type == type);
         }
 
-        internal void Add(Hat newHat)
+        internal void Add(Service newService)
         {
-            newHat.Id = Guid.NewGuid();
+            newService.ServiceId = Guid.NewGuid();
 
-            _hats.Add(newHat);
+            _services.Add(newService);
+        }
+
+        public void Remove(Guid serviceId)
+        {
+            var removeSkill = GetServiceById(serviceId);
         }
     }
 }
