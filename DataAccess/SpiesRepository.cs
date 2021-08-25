@@ -124,6 +124,12 @@ namespace SpyDuh.DataAccess
            }
 
        };
+
+        //internal object GetSpyBySkillType(SkillType skillType)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
         internal IEnumerable<Spy> GetAll()
         {
             return _spies;
@@ -139,5 +145,24 @@ namespace SpyDuh.DataAccess
         {
             return _spies.FirstOrDefault(spy => spy.Id == spyId);
         }
+
+        public List<Spy> GetSpyBySkillType(SkillType skillType)
+        {
+            var newInstance = new SpiesRepository();
+            var listOfSpies = newInstance.GetAll();
+            var spiesWithSkill = new List<Spy>();
+            foreach (var spy in listOfSpies)
+            {
+                foreach (var item in spy.SpySkills)
+                {
+                    if (item.SkillType == skillType)
+                    {
+                        spiesWithSkill.Add(spy);
+                    }
+                }
+            }
+            return spiesWithSkill;
+        }
+
     }
 }

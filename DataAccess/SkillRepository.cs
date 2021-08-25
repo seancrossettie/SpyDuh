@@ -88,6 +88,11 @@ namespace SpyDuh.DataAccess
             return _skills.FirstOrDefault(skill => skill.SkillId == skillId);
         }
 
+        internal void Remove(Guid skillId)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Skill> GetSkillBySkillType(SkillType skillType)
         {
             var skillsByType = _skills.Where(type => type.SkillType == skillType);
