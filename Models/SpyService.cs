@@ -5,13 +5,12 @@ using System.Threading.Tasks;
 
 namespace SpyDuh.Models
 {
-    public class SpyService
-    {
-        public class ListOfServices
+        public class Service
         {
+            public Guid ServiceId { get; set; }
             public int ServicePrice { get; set; }
             public string ServiceName { get; set; }
-            public ServiceType ServiceType { get; set; }
+            public ServiceType Type { get; set; }
 
         }
 
@@ -27,5 +26,4 @@ namespace SpyDuh.Models
             Recruiting,
             Finance
         }
-    }
-}
+ }
