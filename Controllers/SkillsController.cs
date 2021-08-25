@@ -41,7 +41,7 @@ namespace SpyDuh.Controllers
         [HttpDelete("{skillId}")]
         public IActionResult RemoveSkill(Guid skillId)
         {
-            _repo.Remove(skillId);
+            _repo.RemoveSkill(skillId);
 
             return Ok();
         }

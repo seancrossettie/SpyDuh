@@ -99,7 +99,7 @@ namespace SpyDuh.DataAccess
             return skillsByType;
         }
 
-        public void Remove(Guid skillId)
+        public void RemoveSkill(Guid skillId)
         {
             var removeSkill = GetBySkillId(skillId);
         }
