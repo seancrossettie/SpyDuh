@@ -12,7 +12,7 @@ namespace SpyDuh.DataAccess
         {
             new Skill
             {
-                //SkillId = Guid.NewGuid(),
+                SkillId = Guid.NewGuid(),
                 SkillLevel = 42,
                 SkillName = "Slinking About",
                 SkillType = SkillType.Stealth
@@ -44,15 +44,20 @@ namespace SpyDuh.DataAccess
             throw new NotImplementedException();
         }
 
+        internal void Remove(Guid skillId)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Skill> GetSkillBySkillType(SkillType skillType)
         {
             var skillsByType = _skills.Where(type => type.SkillType == skillType);
             return skillsByType;
         }
 
-        //public void Remove(Guid skillId)
-        //{
-        //    var removeSkill = GetBySkillId(skillId);
-        //}
+        public void Remove(Guid skillId)
+        {
+            var removeSkill = GetBySkillId(skillId);
+        }
     }
 }
