@@ -19,25 +19,25 @@ namespace SpyDuh.Controllers
         {
             _repo = new SkillRepository();
         }
-
+        // get all da skillz
         [HttpGet]
         public List<Skill> GetAllSkills()
         {
             return (List<Skill>)_repo.GetAll();
         }
-
+        // get skill by skilltype enum index
         [HttpGet("{skill}")]
         public IEnumerable<Skill> GetSkillBySkillType(SkillType skillType)
         {
             return _repo.GetSkillBySkillType(skillType);
         }
-
+        // add new skill
         [HttpPost]
         public void AddASkill(Skill newSkill)
         {
             _repo.Add(newSkill);
         }
-
+        // delete skill by id
         [HttpDelete("{skillId}")]
         public IActionResult RemoveSkill(Guid skillId)
         {
@@ -45,12 +45,5 @@ namespace SpyDuh.Controllers
 
             return Ok();
         }
-
-        //[HttpGet("spies/{skill}")]
-        //public IActionResult FindBySkillName(string skillName)
-        //{
-        //    var parsedString = skillName.Replace("-", " ");
-        //    return Ok(_repo.GetMemberByInterest(parsedString));
-        //}
     }
 }

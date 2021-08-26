@@ -125,11 +125,6 @@ namespace SpyDuh.DataAccess
 
        };
 
-        //internal object GetSpyBySkillType(SkillType skillType)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         internal IEnumerable<Spy> GetAll()
         {
             return _spies;
@@ -162,6 +157,13 @@ namespace SpyDuh.DataAccess
                 }
             }
             return spiesWithSkill;
+        }
+
+        public List<Spy> AddSkillBySkillId(Guid id, Skill skill)
+        {
+            var skills = _spies.FirstOrDefault(x => x.Id == id).SpySkills;
+            skills.Add(skill);
+            return _spies;
         }
 
     }

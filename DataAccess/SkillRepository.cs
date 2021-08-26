@@ -67,11 +67,6 @@ namespace SpyDuh.DataAccess
             }
         };
 
-        internal IEnumerable<Skill> GetSkillByType(SkillType skillType)
-        {
-            throw new NotImplementedException();
-        }
-
         internal IEnumerable<Skill> GetAll()
         {
             return _skills;

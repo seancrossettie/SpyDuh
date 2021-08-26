@@ -35,11 +35,17 @@ namespace SpyDuh.Controllers
 
             return Created($"/api/spies/{newSpy.Id}", newSpy);
         }
-
+        // search & filter spies by skilltype enum index
         [HttpGet("{skillType}")]
         public IActionResult FindBySkillType(SkillType skillType)
         {
             return Ok(_repo.GetSpyBySkillType(skillType));
+        }
+        // add new skill to spy
+        [HttpPut("{id}")]
+        public object UpdateSkill(Guid Id, Skill updateSkill)
+        {
+            return _repo.AddSkillBySkillId(Id, updateSkill);
         }
     }
 }
