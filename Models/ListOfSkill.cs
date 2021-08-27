@@ -7,7 +7,7 @@ namespace SpyDuh.Models
 {
     public class Skill
     {
-        //public Guid SkillId { get; set; }
+        public Guid SkillId { get; set; }
         public int SkillLevel { get; set; }
         public string SkillName { get; set; }
         public SkillType SkillType { get; set; }

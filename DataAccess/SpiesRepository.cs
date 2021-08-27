@@ -20,7 +20,7 @@ namespace SpyDuh.DataAccess
               {
                   new Skill
                   {
-                      //SkillId = Guid.NewGuid(),
+                      SkillId = Guid.NewGuid(),
                       SkillLevel = 1,
                       SkillName = "Stealth",
                       SkillType = SkillType.Stealth
@@ -36,7 +36,7 @@ namespace SpyDuh.DataAccess
                   {
                       new Skill
                       {
-                          //SkillId = Guid.NewGuid(),
+                          SkillId = Guid.NewGuid(),
                           SkillLevel = 5,
                           SkillName = "Finesse",
                           SkillType = SkillType.SoftSkills
@@ -52,7 +52,7 @@ namespace SpyDuh.DataAccess
                   {
                       new Skill
                       {
-                          //SkillId = Guid.NewGuid(),
+                          SkillId = Guid.NewGuid(),
                           SkillLevel = 1000,
                           SkillName = "Underground Railroad Boss B",
                           SkillType = SkillType.Recon
@@ -68,7 +68,7 @@ namespace SpyDuh.DataAccess
                   {
                       new Skill
                       {
-                          //SkillId = Guid.NewGuid(),
+                          SkillId = Guid.NewGuid(),
                           SkillLevel = 25,
                           SkillName = "Karate, the Dane Cook of martial arts",
                           SkillType = SkillType.Combat
@@ -84,7 +84,7 @@ namespace SpyDuh.DataAccess
                   {
                       new Skill
                       {
-                          //SkillId = Guid.NewGuid(),
+                          SkillId = Guid.NewGuid(),
                           SkillLevel = 1,
                           SkillName = "Diplomacy",
                           SkillType = SkillType.Negotiation
@@ -100,7 +100,7 @@ namespace SpyDuh.DataAccess
                   {
                       new Skill
                       {
-                          //SkillId = Guid.NewGuid(),
+                          SkillId = Guid.NewGuid(),
                           SkillLevel = 15,
                           SkillName = "Ballin Out",
                           SkillType = SkillType.Finance
@@ -116,7 +116,7 @@ namespace SpyDuh.DataAccess
                   {
                       new Skill
                       {
-                          //SkillId = Guid.NewGuid(),
+                          SkillId = Guid.NewGuid(),
                           SkillLevel = 100,
                           SkillName = "Babyface",
                           SkillType = SkillType.Stealth
@@ -125,6 +125,7 @@ namespace SpyDuh.DataAccess
            }
 
        };
+
         internal IEnumerable<Spy> GetAll()
         {
             return _spies;
@@ -148,10 +149,36 @@ namespace SpyDuh.DataAccess
             return result;
         }
 
+
         public IEnumerable<Spy> GetFriends(bool friendStatus)
         { 
             var result = _spies.Where(spy => spy.DoubleAgent == friendStatus);
             return result;
+
+        public List<Spy> GetSpyBySkillType(SkillType skillType)
+        {
+            var newInstance = new SpiesRepository();
+            var listOfSpies = newInstance.GetAll();
+            var spiesWithSkill = new List<Spy>();
+            foreach (var spy in listOfSpies)
+            {
+                foreach (var item in spy.SpySkills)
+                {
+                    if (item.SkillType == skillType)
+                    {
+                        spiesWithSkill.Add(spy);
+                    }
+                }
+            }
+            return spiesWithSkill;
+        }
+
+        public List<Spy> AddSkillBySkillId(Guid id, Skill skill)
+        {
+            var skills = _spies.FirstOrDefault(x => x.Id == id).SpySkills;
+            skills.Add(skill);
+            return _spies;
+
         }
 
     }
