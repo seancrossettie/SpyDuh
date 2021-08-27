@@ -27,12 +27,16 @@ namespace SpyDuh.Controllers
         [HttpPost]
         public IActionResult AddSpy(Spy newSpy)
         {
+            //check to make sure this new spy has a name, since we filter with the property the most
             if (string.IsNullOrEmpty(newSpy.Name))
             {
+                //if there is no name, send bad request response with warning
                 return BadRequest("You must provide a name");
             }
+            //otherwise, add new spy 
             _repo.Add(newSpy);
 
+            //return response 
             return Created($"/api/spies/{newSpy.Id}", newSpy);
         }
     }

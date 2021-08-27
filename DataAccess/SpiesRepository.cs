@@ -8,6 +8,7 @@ namespace SpyDuh.DataAccess
 {
     public class SpiesRepository
     {
+        static FriendRepository _friendRepo = new FriendRepository();
         static List<Spy> _spies = new List<Spy>
        {
            new Spy
@@ -40,7 +41,7 @@ namespace SpyDuh.DataAccess
                           SkillName = "Finesse",
                           SkillType = SkillType.SoftSkills
                       }
-                  }
+                  },
            },
            new Spy
            {
@@ -135,9 +136,15 @@ namespace SpyDuh.DataAccess
             _spies.Add(newSpy);
         }
 
-        public IEnumerable<Spy> GetById(Guid spyId)
+        public Spy GetById(Guid spyId)
         {
-            var result = _spies.Where(spy => spy.Id == spyId);
+            var result = _spies.FirstOrDefault(spy => spy.Id == spyId);
+            return result;
+        }
+
+        public Spy GetByName(string name)
+        {
+            var result = _spies.FirstOrDefault(spy => spy.Name == name);
             return result;
         }
 
@@ -146,5 +153,6 @@ namespace SpyDuh.DataAccess
             var result = _spies.Where(spy => spy.DoubleAgent == friendStatus);
             return result;
         }
+
     }
 }
