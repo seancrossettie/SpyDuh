@@ -151,35 +151,36 @@ namespace SpyDuh.DataAccess
 
 
         public IEnumerable<Spy> GetFriends(bool friendStatus)
-        { 
+        {
             var result = _spies.Where(spy => spy.DoubleAgent == friendStatus);
             return result;
 
-        public List<Spy> GetSpyBySkillType(SkillType skillType)
-        {
-            var newInstance = new SpiesRepository();
-            var listOfSpies = newInstance.GetAll();
-            var spiesWithSkill = new List<Spy>();
-            foreach (var spy in listOfSpies)
+        }
+            public List<Spy> GetSpyBySkillType(SkillType skillType)
             {
-                foreach (var item in spy.SpySkills)
+                var newInstance = new SpiesRepository();
+                var listOfSpies = newInstance.GetAll();
+                var spiesWithSkill = new List<Spy>();
+                foreach (var spy in listOfSpies)
                 {
-                    if (item.SkillType == skillType)
+                    foreach (var item in spy.SpySkills)
                     {
-                        spiesWithSkill.Add(spy);
+                        if (item.SkillType == skillType)
+                        {
+                            spiesWithSkill.Add(spy);
+                        }
                     }
                 }
+                return spiesWithSkill;
             }
-            return spiesWithSkill;
+
+            public List<Spy> AddSkillBySkillId(Guid id, Skill skill)
+            {
+                var skills = _spies.FirstOrDefault(x => x.Id == id).SpySkills;
+                skills.Add(skill);
+                return _spies;
+
+            }
+
         }
-
-        public List<Spy> AddSkillBySkillId(Guid id, Skill skill)
-        {
-            var skills = _spies.FirstOrDefault(x => x.Id == id).SpySkills;
-            skills.Add(skill);
-            return _spies;
-
-        }
-
     }
-}
