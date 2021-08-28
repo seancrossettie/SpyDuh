@@ -77,7 +77,17 @@ namespace SpyDuh.DataAccess
                           SkillName = "Underground Railroad Boss B",
                           SkillType = SkillType.Recon
                       }
+                  },
+               SpyServices = new List<Service>
+               {
+                  new Service
+                  {
+                      ServiceId = Guid.NewGuid(),
+                      ServicePrice = 0000,
+                      ServiceName = "Go on a walk with her",
+                      ServiceType = ServiceType.Stealth
                   }
+               }
            },
            new Spy
            {
@@ -93,7 +103,17 @@ namespace SpyDuh.DataAccess
                           SkillName = "Karate, the Dane Cook of martial arts",
                           SkillType = SkillType.Combat
                       }
+                  },
+               SpyServices = new List<Service>
+               {
+                  new Service
+                  {
+                      ServiceId = Guid.NewGuid(),
+                      ServicePrice = 40000,
+                      ServiceName = "Pick out the right Tactileneck Sweater",
+                      ServiceType = ServiceType.Tactics
                   }
+               }
            },
            new Spy
            {
@@ -109,7 +129,17 @@ namespace SpyDuh.DataAccess
                           SkillName = "Diplomacy",
                           SkillType = SkillType.Negotiation
                       }
+                  },
+               SpyServices = new List<Service>
+              {
+                  new Service
+                  {
+                      ServiceId = Guid.NewGuid(),
+                      ServicePrice = 220000,
+                      ServiceName = "Take down the system",
+                      ServiceType = ServiceType.Combat
                   }
+              }
            },
            new Spy
            {
@@ -125,7 +155,17 @@ namespace SpyDuh.DataAccess
                           SkillName = "Ballin Out",
                           SkillType = SkillType.Finance
                       }
+                  },
+               SpyServices = new List<Service>
+               {
+                  new Service
+                  {
+                      ServiceId = Guid.NewGuid(),
+                      ServicePrice = 4000,
+                      ServiceName = "Yeah, baby! Yeah!",
+                      ServiceType = ServiceType.SoftSkills
                   }
+               }
            },
            new Spy
            {
@@ -141,7 +181,17 @@ namespace SpyDuh.DataAccess
                           SkillName = "Babyface",
                           SkillType = SkillType.Stealth
                       }
+                  },
+               SpyServices = new List<Service>
+               {
+                  new Service
+                  {
+                      ServiceId = Guid.NewGuid(),
+                      ServicePrice = 14500,
+                      ServiceName = "Hold all your files for you.",
+                      ServiceType = ServiceType.Intelligence
                   }
+               }
            }
 
        };
@@ -194,11 +244,29 @@ namespace SpyDuh.DataAccess
             return spiesWithSkill;
         }
 
+        public Spy GetSpySkillsAndServices(string name)
+        {
+            // Get the spy that is passed by controller
+            var matchingSpy = _spies.FirstOrDefault(spy => spy.Name == name);
+
+            // Create a local model to return the skills and services of that spy. 
+            var SpyServices = new Spy
+            {
+                Id = matchingSpy.Id,
+                Name = matchingSpy.Name,
+                SpySkills = matchingSpy.SpySkills,
+                SpyServices = matchingSpy.SpyServices
+            };
+
+
+            return SpyServices;
+        }
+
         //public List<Spy> GetSpyByService(ServiceType serviceType)
         //{
         //    var newRepo = new SpiesRepository();
         //    var listOfSpies = newRepo.GetAll();
-        //    var spiesWithService= new List<Spy>();
+        //    var spiesWithService = new List<Spy>();
         //    foreach (var spy in listOfSpies)
         //    {
         //        foreach (var item in spy.SpyServices)

@@ -60,10 +60,10 @@ namespace SpyDuh.Controllers
         //}
 
         // search & filter spies by servicetype enum index 
-        //[HttpGet("{serviceType}")]
-        //public IActionResult FindByService(ServiceType serviceType)
-        //{
-        //    return Ok(_repo.GetSpyByService(serviceType));
-        //}
+        [HttpGet("getSpySkillsAndServices")]
+        public IActionResult FindByService(string name)
+        {
+           return Ok(_repo.GetSpySkillsAndServices(name));
+        }
     }
 }
