@@ -16,7 +16,7 @@ namespace SpyDuh.DataAccess
                 ServiceId = Guid.NewGuid(),
                 ServicePrice = 4000,
                 ServiceName = "Scope out a facility",
-                Type = ServiceType.Recon
+                ServiceType = ServiceType.Recon
             },
             
             new Service
@@ -24,7 +24,7 @@ namespace SpyDuh.DataAccess
                 ServiceId = Guid.NewGuid(),
                 ServicePrice = 230000,
                 ServiceName = "Make someone disappear",
-                Type = ServiceType.Combat
+                ServiceType = ServiceType.Combat
             },
 
             new Service
@@ -32,7 +32,7 @@ namespace SpyDuh.DataAccess
                 ServiceId = Guid.NewGuid(),
                 ServicePrice = 200000,
                 ServiceName = "Fight another agent",
-                Type = ServiceType.Combat
+                ServiceType = ServiceType.Combat
             },
 
             new Service
@@ -40,7 +40,7 @@ namespace SpyDuh.DataAccess
                 ServiceId = Guid.NewGuid(),
                 ServicePrice = 20000,
                 ServiceName = "Flip an agent",
-                Type = ServiceType.Recruiting
+                ServiceType = ServiceType.Recruiting
             }
         };
 
@@ -54,9 +54,9 @@ namespace SpyDuh.DataAccess
             return _services.FirstOrDefault(service => service.ServiceId == serviceId);
         }
 
-        public IEnumerable<Service> GetServiceByType(ServiceType type)
+        public IEnumerable<Service> GetServiceByType(ServiceType serviceType)
         {
-            return _services.Where(serviceType => serviceType.Type == type);
+            return _services.Where(type => type.ServiceType == serviceType);
         }
 
         internal void Add(Service newService)
