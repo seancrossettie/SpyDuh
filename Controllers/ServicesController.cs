@@ -25,25 +25,27 @@ namespace SpyDuh.Controllers
             return (List<Service>)_repo.GetAll();
         }
 
-        [HttpDelete("{serviceId}")]
-        public IActionResult RemoveService(Guid serviceId)
-        {
-            _repo.Remove(serviceId);
 
-            return Ok();
-        }
-
-        [HttpGet("{type}")] // how should this method be exposed & executed
+        [HttpGet("{serviceType}")] // how should this method be exposed & executed
         // all additive
-        public IEnumerable<Service> GetServiceByType(ServiceType type) 
+        public IEnumerable<Service> GetServiceByType(ServiceType serviceType) 
         {
-            return _repo.GetServiceByType(type);
+            return _repo.GetServiceByType(serviceType);
         }
 
         [HttpPost]
         public void AddAService(Service newService)
         {
             _repo.Add(newService);
+        }
+
+
+        [HttpDelete("{serviceId}")]
+        public IActionResult RemoveService(Guid serviceId)
+        {
+            _repo.Remove(serviceId);
+
+            return Ok();
         }
 
     }

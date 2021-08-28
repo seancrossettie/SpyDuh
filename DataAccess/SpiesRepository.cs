@@ -25,6 +25,16 @@ namespace SpyDuh.DataAccess
                       SkillName = "Stealth",
                       SkillType = SkillType.Stealth
                   }
+              },
+              SpyServices = new List<Service>
+              {
+                  new Service
+                  {
+                      ServiceId = Guid.NewGuid(),
+                      ServicePrice = 4000,
+                      ServiceName = "Scope out a facility",
+                      ServiceType = ServiceType.Recon
+                  }
               }
            },
            new Spy
@@ -42,6 +52,16 @@ namespace SpyDuh.DataAccess
                           SkillType = SkillType.SoftSkills
                       }
                   },
+               SpyServices = new List<Service>
+               {
+                  new Service
+                  {
+                        ServiceId = Guid.NewGuid(),
+                        ServicePrice = 230000,
+                        ServiceName = "Make someone disappear",
+                        ServiceType = ServiceType.Combat
+                  }
+               }
            },
            new Spy
            {
@@ -151,10 +171,11 @@ namespace SpyDuh.DataAccess
 
 
         public IEnumerable<Spy> GetFriends(bool friendStatus)
-        { 
+        {
             var result = _spies.Where(spy => spy.DoubleAgent == friendStatus);
             return result;
 
+        }
         public List<Spy> GetSpyBySkillType(SkillType skillType)
         {
             var newInstance = new SpiesRepository();
@@ -173,6 +194,24 @@ namespace SpyDuh.DataAccess
             return spiesWithSkill;
         }
 
+        //public List<Spy> GetSpyByService(ServiceType serviceType)
+        //{
+        //    var newRepo = new SpiesRepository();
+        //    var listOfSpies = newRepo.GetAll();
+        //    var spiesWithService= new List<Spy>();
+        //    foreach (var spy in listOfSpies)
+        //    {
+        //        foreach (var item in spy.SpyServices)
+        //        {
+        //            if (item.ServiceType == serviceType)
+        //            {
+        //                spiesWithService.Add(spy);
+        //            }
+        //        }
+        //    }
+        //    return spiesWithService;
+        //}
+
         public List<Spy> AddSkillBySkillId(Guid id, Skill skill)
         {
             var skills = _spies.FirstOrDefault(x => x.Id == id).SpySkills;
@@ -181,5 +220,12 @@ namespace SpyDuh.DataAccess
 
         }
 
+        public List<Spy> AddServiceByServiceId(Guid id, Service service)
+        {
+            var services = _spies.FirstOrDefault(x => x.Id == id).SpyServices;
+            services.Add(service);
+            return _spies;
+
+        }
     }
 }

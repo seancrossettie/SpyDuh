@@ -45,11 +45,25 @@ namespace SpyDuh.Controllers
         {
             return Ok(_repo.GetSpyBySkillType(skillType));
         }
+
         // add new skill to spy
         [HttpPut("{id}")]
         public object UpdateSkill(Guid Id, Skill updateSkill)
         {
             return _repo.AddSkillBySkillId(Id, updateSkill);
         }
+        //// add new service to spy
+        //[HttpPut("{id}/services")]
+        //public object UpdateService(Guid Id, Service updateService)
+        //{
+        //    return _repo.AddServiceByServiceId(Id, updateService);
+        //}
+
+        // search & filter spies by servicetype enum index 
+        //[HttpGet("{serviceType}")]
+        //public IActionResult FindByService(ServiceType serviceType)
+        //{
+        //    return Ok(_repo.GetSpyByService(serviceType));
+        //}
     }
 }
